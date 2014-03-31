@@ -1,9 +1,13 @@
 export LSCOLORS="exfxcxdxbxegedabagacad"
 export CLICOLOR=true
 
-fpath=($ZSH/functions $fpath)
+# Check if the functions directory exists
+if [[ -d $ZSH/functions ]]
+then
+  fpath=($ZSH/functions $fpath)
 
-autoload -U $ZSH/functions/*(:t)
+  autoload -U $ZSH/functions/*(:t)
+fi
 
 HISTFILE=~/.zsh_history
 HISTSIZE=10000

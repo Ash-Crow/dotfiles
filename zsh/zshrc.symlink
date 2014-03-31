@@ -1,0 +1,66 @@
+# Shortcut to this dotfiles path is $ZSH
+export ZSH=$HOME/.dotfiles
+
+# Use .localrc for SUPER SECRET CRAP that you don't want in your public,
+# versioned repo.
+if [[ -a ~/.localrc ]]
+then
+  source ~/.localrc
+fi
+
+# All of our zsh files
+typeset -U config_files
+config_files=($ZSH/**/*.zsh)
+
+# Load the path files
+for file in ${(M)config_files:#*/path.zsh}
+do
+  source $file
+done
+
+# Load everything but the path and completion files
+for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}
+do
+  source $file
+done
+
+# Load promptinit and set theme to pure
+autoload -U promptinit && promptinit
+prompt pure
+
+# Initialize autocomplete here, otherwise functions won't be loaded
+autoload -U compinit
+compinit
+
+# Load every completion after autocomplete loads
+for file in ${(M)config_files:#*/completion.zsh}
+do
+  source $file
+done
+
+# Initialize rbenv
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+
+export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
+
+# Set languate to Norwegian UTF 8
+export LC_ALL=no_NO.UTF-8
+export LANG=no_NO.UTF-8
+
+# OS X specific settings
+if [[ $OSTYPE == darwin* ]]
+then
+  # Your project folder that we can `c [tab]` to
+  export PROJECTS=~/Projects
+
+  # Set MAMP and PHP paths
+  export MAMP_PHP=/Applications/MAMP/bin/php/php5.5.3/bin
+  export PATH="$MAMP_PHP:$PATH"
+
+  export PATH=/usr/local/opt/coreutils/libexec/gnubin:$PATH
+  export PATH=$PATH:/usr/local/texlive/2012basic/bin/universal-darwin
+fi
+
+unset config_files
+

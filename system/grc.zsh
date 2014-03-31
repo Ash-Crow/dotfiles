@@ -1,10 +1,13 @@
 # GRC colorizes nifty unix tools all over the place
-if $(grc &>/dev/null)
+if [[ $OSTYPE == darwin* ]]
 then
-  if ! $(brew &>/dev/null)
+  if $(grc &>/dev/null) && ! $(brew &>/dev/null)
   then
     source `brew --prefix`/etc/grc.bashrc
-  else
+  fi
+else
+  if $(grc &>/dev/null)
+  then
     source $ZSH/system/grc.bashrc
   fi
 fi

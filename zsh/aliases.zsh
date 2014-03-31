@@ -3,7 +3,7 @@ alias reload!='. ~/.zshrc'
 # Replace vi with vim
 alias vi="vim"
 
-# Easier navigation: .., ..., ...., ....., ~ and -
+# Easier navigation
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
@@ -28,6 +28,7 @@ then
   # Copies public SSH key to system clipboard
   alias pubkey="more ~/.ssh/id_dsa.pub | pbcopy | echo '=> Public key copied to pasteboard.'"
 
+  # Flush DNS settings
   alias flush="sudo killall -HUP mDNSResponder "
 
   # Show/hide hidden files in Finder
@@ -43,5 +44,6 @@ then
   alias pumpitup="osascript -e 'set volume 7'"
   alias hax="growlnotify -a 'Activity Monitor' 'System error' -m 'WTF R U DOIN'"
 
+  # Kill appleeventsd to fix a bug causing "Show in Finder" to disappear
   alias ff="sudo killall -KILL appleeventsd"
 fi

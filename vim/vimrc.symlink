@@ -1,0 +1,551 @@
+" -----------------------------------------------------------------------------
+"  Init stuff
+" -----------------------------------------------------------------------------
+
+" Init Vundle.
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" Bundles!
+Bundle 'gmarik/vundle'
+
+" Solarized is beautiful.
+Bundle 'altercation/vim-colors-solarized'
+
+" Superb comments functionality.
+Bundle 'tomtom/tcomment_vim'
+
+" https://github.com/tpope/vim-abolish
+" Bundle 'tpope/vim-abolish'
+
+" https://github.com/plasticboy/vim-markdown
+" Bundle 'plasticboy/vim-markdown'
+
+" Rails features for vim.
+Bundle 'tpope/vim-rails'
+
+" Mappings to manipulate surroundings: parentheses, brackets, and more.
+Bundle 'tpope/vim-surround'
+
+" Syntax support for Less.
+Bundle 'groenewege/vim-less'
+
+" Check syntax for errors.
+Bundle 'scrooloose/syntastic'
+
+" Add browser prefixes to CSS3 properties.
+Bundle 'vim-scripts/prefixer.vim'
+
+" Track time spent in projects.
+Bundle 'wakatime/vim-wakatime'
+
+" Looking up documentation.
+Bundle 'Keithbsmiley/investigate.vim'
+
+" Syntax support for mustache and handlebars.
+Bundle 'mustache/vim-mustache-handlebars'
+
+" Syntax support for HTML5 elements.
+Bundle 'othree/html5.vim'
+
+" Set color scheme.
+colorscheme solarized
+
+" -----------------------------------------------------------------------------
+"  1 Important
+" -----------------------------------------------------------------------------
+
+" Don't behave like Vi.
+set nocompatible
+
+" Key sequence to toggle paste mode.
+set pastetoggle=<F2>
+
+" -----------------------------------------------------------------------------
+"  2 Moving around, searching and patterns
+" -----------------------------------------------------------------------------
+
+" Which commands wrap to another line? Backspace and cursors.
+set whichwrap+=<,>,h,l,[,]
+
+" Don't jump to the start of line when scrolling.
+set nostartofline
+
+" Set path to the folder from which we opened Vim.
+set path=$PWD/**
+
+" Do incremental searching.
+set incsearch
+
+" Ignore case when searching.
+set ignorecase
+
+" -----------------------------------------------------------------------------
+"  3 Tags
+" -----------------------------------------------------------------------------
+
+
+" -----------------------------------------------------------------------------
+"  4 Displaying text
+" -----------------------------------------------------------------------------
+
+" Show some lines around the cursor.
+set scrolloff=5
+
+" Wrap lines.
+set wrap
+
+" Soft break lines at end of window.
+set linebreak
+
+" Preserve indentation.
+set breakindent
+
+" Meh.
+set fillchars=fold:\
+set fillchars+=vert:\|
+
+" Command line height.
+set cmdheight=2
+
+" List of strings used for list mode.
+set listchars=tab:▸\ ,trail:~
+
+" Display unprintable characters.
+" set list
+
+" Turn off lazy redraw.
+set nolazyredraw
+
+" Show line numbers.
+set number
+
+" Show relative line numbers.
+set relativenumber
+
+" -----------------------------------------------------------------------------
+"  5 Syntax, highlighting and spelling
+" -----------------------------------------------------------------------------
+
+" Light background because of light theme.
+set background=light
+
+filetype off
+filetype indent on
+filetype plugin indent on
+
+" Enable syntax themes.
+syntax enable
+
+" Don't highlight searches.
+set nohlsearch
+
+" Highlight extra, unwanted whitespace.
+highlight ExtraWhitespace ctermbg=red ctermfg=white
+autocmd Syntax * syn match ExtraWhitespace /\s\+$\| \+\ze\t/ containedin=ALL
+
+" -----------------------------------------------------------------------------
+"  6 Multiple windows
+" -----------------------------------------------------------------------------
+
+" Always show the statusline.
+set laststatus=2
+
+" Change color of statusline according to current mode.
+function! InsertStatuslineColor(mode)
+  if a:mode == 'i'
+    hi StatusLine ctermbg=white ctermfg=darkblue
+  elseif a:mode == 'r'
+    hi StatusLine ctermbg=white ctermfg=darkblue
+  else
+    hi StatusLine ctermbg=red ctermfg=lightgrey
+  endif
+endfunction
+
+" Change statusline colors when entering or changing insert mode.
+au InsertEnter * call InsertStatuslineColor(v:insertmode)
+au InsertChange * call InsertStatuslineColor(v:insertmode)
+
+" Change back to default when exiting insert mode.
+au InsertLeave * hi StatusLine ctermbg=red ctermfg=lightgrey
+
+" Default the statusline when entering Vim.
+hi StatusLine ctermbg=red ctermfg=lightgrey
+hi StatusLineNC ctermbg=darkgrey ctermfg=lightgrey
+
+" Set the content of the statusline.
+set statusline=%02n)\ 
+set statusline+=%f
+set statusline+=%(\ %m%r%y%)
+set statusline+=%=%-14.(%l,%c%)\ %L,%P
+
+" Change the color of the vertical splitter.
+hi VertSplit ctermbg=lightgrey ctermfg=grey
+
+" -----------------------------------------------------------------------------
+"  7 Mulitple tab pages
+" -----------------------------------------------------------------------------
+
+
+" -----------------------------------------------------------------------------
+"  8 Terminal
+" -----------------------------------------------------------------------------
+
+" Terminal connection is fast, baby!
+set ttyfast
+
+" -----------------------------------------------------------------------------
+"  9 Using the mouse
+" -----------------------------------------------------------------------------
+
+
+" -----------------------------------------------------------------------------
+"  10 Printing
+" -----------------------------------------------------------------------------
+
+
+" -----------------------------------------------------------------------------
+"  11 Messages and info
+" -----------------------------------------------------------------------------
+
+" Shorten messages.
+set shortmess=filtIoOA
+
+" Don't display incomplete commands.
+set noshowcmd
+
+" Show the cursor position all the time.
+set ruler
+
+" Tell us about changes.
+set report=0
+
+" Shut the fuck up!
+set visualbell
+
+" -----------------------------------------------------------------------------
+"  12 Selecting text
+" -----------------------------------------------------------------------------
+
+
+" -----------------------------------------------------------------------------
+"  13 Editing text
+" -----------------------------------------------------------------------------
+
+" Wrap at 80 chars by default.
+" set tw=80
+
+" Allow backspacing over everything in insert mode.
+set backspace=2
+
+" Support for numbered/bullet lists.
+set formatoptions+=n
+
+" Brackets/braces that is.
+set showmatch
+
+" Duration to show matching brace (1/10 sec).
+set matchtime=5
+
+" -----------------------------------------------------------------------------
+"  14 Tabs and indenting
+" -----------------------------------------------------------------------------
+
+" Number of spaces a <Tab> in the text stands for.
+set tabstop=2
+
+" Number of spaces used for each step of (auto)indent.
+set shiftwidth=2
+
+" Fuck tabs.
+set nosmarttab
+
+" If non-zero, number of spaces to insert for a <Tab>.
+set softtabstop=2
+
+" Expand tabs to spaces.
+set expandtab
+
+" Automatic indent new lines.
+set autoindent
+
+" Be smart about it.
+set smartindent
+
+" Set color of indent lines.
+let g:indentLine_color_term = 0
+
+" -----------------------------------------------------------------------------
+"  15 Folding
+" -----------------------------------------------------------------------------
+
+" Display all folds open.
+set nofoldenable
+
+" Close folds higher than 2.
+set foldlevel=2
+
+" Change what's printed on the folded line.
+set foldtext=NeatFoldText()
+
+" Fold by syntax.
+set foldmethod=syntax
+
+" Disable Ruby comment folds.
+let ruby_no_comment_fold=1
+
+" Custom fold function.
+function! NeatFoldText() "{{{2
+  let line = ' ' . substitute(getline(v:foldstart), '^\s*"\?\s*\|\s*"\?\s*{{' . '{\d*\s*', '', 'g') . ' '
+  let lines_count = v:foldend - v:foldstart + 1
+  let lines_count_text = '| ' . printf("%10s", lines_count . ' lines') . ' |'
+  let foldchar = '·'
+  let foldtextstart = strpart('+' . repeat(foldchar, v:foldlevel*2) . line, 0, (winwidth(0)*2)/3)
+  let foldtextend = lines_count_text . repeat(foldchar, 8)
+  let foldtextlength = strlen(substitute(foldtextstart . foldtextend, '.', 'x', 'g')) + &foldcolumn
+  return foldtextstart . repeat(foldchar, winwidth(0)-foldtextlength) . foldtextend
+endfunction
+
+" Color setup for folds.
+highlight Folded term=bold ctermbg=0 ctermfg=7
+highlight FoldColumn term=bold ctermbg=10 ctermfg=7
+
+" Don't screw up folds when inserting text that might affect them, until
+" leaving insert mode. Foldmethod is local to the window.
+autocmd InsertEnter * let w:last_fdm=&foldmethod | setlocal foldmethod=manual
+autocmd InsertLeave * let &l:foldmethod=w:last_fdm
+
+" -----------------------------------------------------------------------------
+"  16 Diff mode
+" -----------------------------------------------------------------------------
+
+
+" -----------------------------------------------------------------------------
+"  17 Mapping
+" -----------------------------------------------------------------------------
+
+" Allow timing out halfway into a mapping.
+set ttimeoutlen=50
+
+" -----------------------------------------------------------------------------
+"  18 Reading and writing files
+" -----------------------------------------------------------------------------
+
+
+" -----------------------------------------------------------------------------
+"  19 The swap file
+" -----------------------------------------------------------------------------
+
+" Don't use a swap file.
+set noswapfile
+
+" -----------------------------------------------------------------------------
+"  20 Command line editing
+" -----------------------------------------------------------------------------
+
+" How does command line completion work?
+set wildmode=list:full
+
+" Ignore these file patterns.
+set wildignore+=*.exe,*.swp,.DS_Store
+
+" Turn on wild menu.
+set wildmenu
+
+" -----------------------------------------------------------------------------
+"  21 Executing external commands
+" -----------------------------------------------------------------------------
+
+
+" -----------------------------------------------------------------------------
+"  22 Running make and jumping to errors
+" -----------------------------------------------------------------------------
+
+
+" -----------------------------------------------------------------------------
+"  23 Language specific
+" -----------------------------------------------------------------------------
+
+
+" -----------------------------------------------------------------------------
+"  24 Multi-byte characters
+" -----------------------------------------------------------------------------
+
+
+" -----------------------------------------------------------------------------
+"  25 Various
+" -----------------------------------------------------------------------------
+
+" Alow virtual edit in visual block.
+set virtualedit=block
+
+" Strip all trailing whitespace in file.
+function! StripWhitespace ()
+  exec ':%s/ \+$//gc'
+endfunction
+map ,s :call StripWhitespace ()<CR>
+
+" Clear SignColumn column.
+highlight clear SignColumn
+
+" Toggle linenumber mode.
+function! NumberToggle()
+  if(&relativenumber == 1)
+    set norelativenumber
+  else
+    set relativenumber
+  endif
+endfunc
+
+" Rename tabs to show tab number.
+" (Based on http://stackoverflow.com/questions/5927952/whats-implementation-of-vims-default-tabline-function)
+if exists("+showtabline")
+  function! MyTabLine()
+    let s = ''
+    let wn = ''
+    let t = tabpagenr()
+    let i = 1
+    while i <= tabpagenr('$')
+      let buflist = tabpagebuflist(i)
+      let winnr = tabpagewinnr(i)
+      let s .= '%' . i . 'T'
+      let s .= (i == t ? '%1*' : '%2*')
+      let s .= ' '
+      let wn = tabpagewinnr(i,'$')
+
+      let s .= '%#TabNum#'
+      let s .= i . ')'
+      let s .= ' '
+      " let s .= '%*'
+      let s .= (i == t ? '%#TabLineSel#' : '%#TabLine#')
+      let bufnr = buflist[winnr - 1]
+      let file = bufname(bufnr)
+      let buftype = getbufvar(bufnr, 'buftype')
+      if buftype == 'nofile'
+        if file =~ '\/.'
+          let file = substitute(file, '.*\/\ze.', '', '')
+        endif
+      else
+        let file = fnamemodify(file, ':p:t')
+      endif
+      if file == ''
+        let file = '[No Name]'
+      endif
+      let s .= file . ' '
+      let i = i + 1
+    endwhile
+    let s .= '%T%#TabLineFill#%='
+    let s .= (tabpagenr('$') > 1 ? '%999XX' : 'X')
+    return s
+  endfunction
+  set stal=2
+  set tabline=%!MyTabLine()
+  set showtabline=1
+  highlight link TabNum Special
+endif
+
+" Set documentation URL for Less.
+let g:investigate_url_for_less="http://cssdocs.org/^s"
+
+" -----------------------------------------------------------------------------
+"  26 Remapping
+" ----------------------------------------------------------------------------
+
+" Set leader to <space>
+let mapleader = "\<Space>"
+
+" Allow indented comments. See https://news.ycombinator.com/item?id=3124188
+" for more info.
+inoremap # X<BS>#
+
+" Compile less-file with leader + m.
+nnoremap ,m :w <BAR> !lessc % > %:t:r.css<CR><space
+
+" Exit to normal mode with 'jj'
+inoremap jj <ESC>
+
+" Remap tagging because Norwegian keyboards <3.
+nnoremap <C-y> <C-]>
+
+" Toggle comments with leader + c.
+map <leader>c <c-_><c-_>
+
+" Change linenumber mode with leader + l.
+nnoremap <leader>l :call NumberToggle()<CR>
+
+" Quickly change background mode with F5.
+call togglebg#map('<F5>')
+
+" Reflow paragraph with Q in normal and visual mode.
+nnoremap Q gqap
+vnoremap Q gq
+
+" Sane movement with wrap turned on.
+nnoremap j gj
+nnoremap k gk
+vnoremap j gj
+vnoremap k gk
+
+" Quickly edit/reload the vimrc file.
+nmap <silent> <leader>ev :e $MYVIMRC<CR>
+nmap <silent> <leader>sv :so $MYVIMRC<CR>
+
+" Use Q for formatting the current paragraph (or selection).
+vmap Q gq
+nmap Q gqap
+
+" Disable arrow keys in both normal and insert mode.
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
+imap <up> <nop>
+imap <down> <nop>
+imap <left> <nop>
+imap <right> <nop>
+
+" Easy window navigation.
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+
+" Quickly change buffers by pressing leader + b and a number.
+nnoremap <leader>b :ls<CR>:buffer<Space>
+
+" Copy and paste to system clipboard.
+vmap <leader>y "+y
+vmap <leader>d "+d
+nmap <leader>p "+p
+nmap <leader>P "+P
+vmap <leader>p "+p
+vmap <leader>P "+P
+
+" Save a file with leader + w.
+nnoremap <leader>w :w<CR>
+
+" Save a file as root (sudo).
+cmap w!! w !sudo tee % >/dev/null
+
+noremap <leader>i :set ts=4 sw=4 noet <BAR> retab! <BAR> set ts=2 sw=2 et <BAR> retab<CR>
+noremap <leader>o :set ts=2 sw=2 noet <BAR> retab! <BAR> set ts=4 sw=4 et <BAR> retab<CR>
+
+" set winminwidth=0
+" nmap <Leader>h <C-W>h500<C-W>>
+" nmap <Leader>l <C-W>l500<C-W>>
+" :nnoremap <leader>0 :tabedit %<cr>
+
+" Better tab navigation.
+nnoremap th :tabfirst<CR>
+nnoremap tj :tabprev<CR>
+nnoremap tk :tabnext<CR>
+nnoremap tl :tablast<CR>
+nnoremap tn :tabnew<CR>
+nnoremap tq :tabclose<CR>
+
+" Lessc this shit
+nnoremap ,m :w <BAR> !lessc % > %:t:r.css<CR><space>
+
+" Look up documentation with leader + K.
+nnoremap <leader>K :call investigate#Investigate()<CR>
+

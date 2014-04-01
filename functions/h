@@ -1,0 +1,12 @@
+# Usage: h <string>
+# Description: If the <string> parameter is given, search in the history for
+# that string. Otherwise show the entire history.
+# Credit: http://nixtricks.wordpress.com/2009/12/03/zsh-print-the-full-command-line-history/
+h() {
+  if [ -z "$*" ]
+  then
+    history 1
+  else
+    history 1 | egrep "$@"
+  fi
+}

@@ -46,9 +46,15 @@ fi
 
 export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
 
-# Set languate to Norwegian UTF 8
-export LC_ALL=no_NO.UTF-8
-export LANG=no_NO.UTF-8
+# Use Norwegian on OS X, and US English on other machines (like Ubuntu)
+if [[ $OSTYPE == darwin* ]]
+then
+  export LC_ALL=no_NO.UTF-8
+  export LANG=no_NO.UTF-8
+else
+  export LC_ALL=en_US.UTF-8
+  export LANT=en_US.UTF-8
+fi
 
 # OS X specific settings
 if [[ $OSTYPE == darwin* ]]

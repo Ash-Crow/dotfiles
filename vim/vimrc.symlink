@@ -444,9 +444,6 @@ if exists("+showtabline")
   highlight link TabNum Special
 endif
 
-" Set documentation URL for Less.
-let g:investigate_url_for_less="http://cssdocs.org/^s"
-
 " -----------------------------------------------------------------------------
 "  26 Remapping
 " ----------------------------------------------------------------------------

@@ -17,6 +17,10 @@ bindkey '\e[A' up-line-or-beginning-search
 bindkey '\eOB' down-line-or-beginning-search
 bindkey '\e[B' down-line-or-beginning-search
 
+# Quickly go to beginning and end of history
+bindkey "^[[5~" beginning-of-history
+bindkey "^[[6~" end-of-history
+
 # Navigate back and forward in words and lines
 bindkey "[D" backward-word
 bindkey "[C" forward-word

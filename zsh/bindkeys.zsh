@@ -26,7 +26,9 @@ bindkey "[D" backward-word
 bindkey "[C" forward-word
 bindkey "[A" beginning-of-line
 bindkey "[B" end-of-line
-bindkey "^?" backward-delete-char
+
+# fn + backspace should work as the delete key
+bindkey "^[[3~" delete-char
 
 # Kill the whole line with CTRL + U
 bindkey "^U" kill-whole-line

@@ -55,7 +55,7 @@ bind-key x kill-pane
 bind-key q kill-window
 
 # Default statusbar colors
-set-option -g status-bg white #base2
+set-option -g status-bg black #base2
 set-option -g status-fg yellow #yellow
 set-option -g status-attr default
 

@@ -127,8 +127,7 @@ set relativenumber
 "  5 Syntax, highlighting and spelling
 " -----------------------------------------------------------------------------
 
-" Light background because of light theme.
-set background=light
+set background=dark
 
 filetype off
 filetype indent on
@@ -154,11 +153,11 @@ set laststatus=2
 " Change color of statusline according to current mode.
 function! InsertStatuslineColor(mode)
   if a:mode == 'i'
-    hi StatusLine ctermbg=white ctermfg=darkblue
+    hi StatusLine ctermbg=black ctermfg=darkblue
   elseif a:mode == 'r'
-    hi StatusLine ctermbg=white ctermfg=darkblue
+    hi StatusLine ctermbg=black ctermfg=darkblue
   else
-    hi StatusLine ctermbg=red ctermfg=lightgrey
+    hi StatusLine ctermbg=red ctermfg=black
   endif
 endfunction
 
@@ -167,11 +166,11 @@ au InsertEnter * call InsertStatuslineColor(v:insertmode)
 au InsertChange * call InsertStatuslineColor(v:insertmode)
 
 " Change back to default when exiting insert mode.
-au InsertLeave * hi StatusLine ctermbg=red ctermfg=lightgrey
+au InsertLeave * hi StatusLine ctermbg=red ctermfg=black
 
 " Default the statusline when entering Vim.
-hi StatusLine ctermbg=red ctermfg=lightgrey
-hi StatusLineNC ctermbg=darkgrey ctermfg=lightgrey
+hi StatusLine ctermbg=red ctermfg=black
+hi StatusLineNC ctermbg=darkgrey ctermfg=black
 
 " Set the content of the statusline.
 set statusline=%02n)\ 
@@ -180,7 +179,7 @@ set statusline+=%(\ %m%r%y%)
 set statusline+=%=%-14.(%l,%c%)\ %L,%P
 
 " Change the color of the vertical splitter.
-hi VertSplit ctermbg=lightgrey ctermfg=grey
+hi VertSplit ctermbg=black ctermfg=grey
 
 " -----------------------------------------------------------------------------
 "  7 Mulitple tab pages

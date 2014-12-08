@@ -384,7 +384,6 @@ hi LineNr ctermbg=0
 
 " Different color for current line number.
 hi CursorLineNr ctermbg=0 ctermfg=9
-hi CursorLine ctermbg=0
 
 " Alow virtual edit in visual block.
 set virtualedit=block

@@ -174,10 +174,13 @@ hi StatusLine ctermbg=10 ctermfg=7
 hi StatusLineNC ctermbg=10 ctermfg=11
 
 " Set the content of the statusline.
-set statusline=%02n)\ 
-set statusline+=%f
+set statusline=
+set statusline+=%<%f
 set statusline+=%(\ %m%r%y%)
-set statusline+=%=%-14.(%l,%c%)\ %L,%P
+set statusline+=%= 
+set statusline+=\ %{fugitive#statusline()}
+set statusline+=\ %{SyntasticStatuslineFlag()}
+set statusline+=\ line\ %l\/%L
 
 " Change the color of the vertical splitter.
 hi VertSplit ctermbg=black ctermfg=darkgrey

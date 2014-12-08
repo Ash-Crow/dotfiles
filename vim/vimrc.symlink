@@ -22,8 +22,16 @@ Bundle 'tpope/vim-rails'
 " Mappings to manipulate surroundings: parentheses, brackets, and more.
 Bundle 'tpope/vim-surround'
 
-" Syntax support for Less.
-Bundle 'groenewege/vim-less'
+" Syntax plugins
+Bundle 'cakebaker/scss-syntax.vim'
+Bundle 'jdaihl/vim-less'
+Bundle 'JulesWang/css.vim'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'mustache/vim-mustache-handlebars'
+Bundle 'othree/html5.vim'
+
+" Highlight colors in CSS files.
+Bundle 'ap/vim-css-color'
 
 " Check syntax for errors.
 Bundle 'scrooloose/syntastic'
@@ -35,11 +43,7 @@ Bundle 'vim-scripts/prefixer.vim'
 " Looking up documentation.
 Bundle 'Keithbsmiley/investigate.vim'
 
-" Syntax support for mustache and handlebars.
-Bundle 'mustache/vim-mustache-handlebars'
 
-" Syntax support for HTML5 elements.
-Bundle 'othree/html5.vim'
 
 " Set color scheme.
 set background=dark

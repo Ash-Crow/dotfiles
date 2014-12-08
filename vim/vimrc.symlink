@@ -47,6 +47,8 @@ Bundle 'Keithbsmiley/investigate.vim'
 " Text filtering and alignment.
 Bundle 'godlygeek/tabular'
 
+" Enhance netwr (directory explorer).
+Bundle 'tpope/vim-vinegar'
 
 " Set color scheme.
 set background=dark

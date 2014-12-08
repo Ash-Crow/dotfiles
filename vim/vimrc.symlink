@@ -471,9 +471,33 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_enable_signs = 1
 let g:syntastic_stl_format = 'SYNTAX(%E{err: %e}%B{ }%W{warn: %w})'
 
+" YOPO (You Only Paste Once) functions. See commit message for more info.
+function! s:setup_paste() abort
+  let s:paste = &paste
+  let s:mouse = &mouse
+  set paste
+  set mouse=
+endfunction
+
+augroup unimpaired_paste
+  autocmd!
+  autocmd InsertLeave *
+        \ if exists('s:paste') |
+        \   let &paste = s:paste |
+        \   let &mouse = s:mouse |
+        \   unlet s:paste |
+        \   unlet s:mouse |
+        \ endif
+augroup END
+
 " -----------------------------------------------------------------------------
 "  26 Remapping
 " ----------------------------------------------------------------------------
+
+" YOPO mappings.
+nnoremap <silent> <Plug>unimpairedPaste :call <SID>setup_paste()<CR>
+nnoremap <silent> yo :call <SID>setup_paste()<CR>o
+nnoremap <silent> yO :call <SID>setup_paste()<CR>O
 
 " Set leader to <space>
 let mapleader = "\<Space>"

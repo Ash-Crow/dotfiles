@@ -176,14 +176,18 @@ hi StatusLineNC ctermbg=10 ctermfg=11
 " Set the content of the statusline.
 set statusline=
 set statusline+=%<%f
-set statusline+=%(\ %m%r%y%)
+set statusline+=%(\ %Y%)
+set statusline+=%(\ %R%)
 set statusline+=%= 
-set statusline+=\ %{fugitive#statusline()}
-set statusline+=\ %{SyntasticStatuslineFlag()}
-set statusline+=\ line\ %l\/%L
+set statusline+=\ %1*%{SyntasticStatuslineFlag()}%*\ 
+set statusline+=\ %{fugitive#statusline()}\ 
+set statusline+=\ LINE(%l\/%L)
 
 " Change the color of the vertical splitter.
 hi VertSplit ctermbg=black ctermfg=darkgrey
+
+" Define custom user highlight groups.
+hi User1 ctermbg=10 ctermfg=1
 
 " -----------------------------------------------------------------------------
 "  7 Mulitple tab pages

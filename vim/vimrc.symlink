@@ -606,3 +606,5 @@ endif
 " Look up documentation with leader + K.
 nnoremap <leader>K :call investigate#Investigate()<CR>
 
+" Display highlight group of word below cursor.
+map <F9> :echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')<CR>

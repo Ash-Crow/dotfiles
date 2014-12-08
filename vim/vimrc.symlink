@@ -392,6 +392,9 @@ hi CursorLineNr ctermbg=0 ctermfg=9
 " Alow virtual edit in visual block.
 set virtualedit=block
 
+" Open investigate in Dash
+let g:investigate_use_dash=1
+
 " Strip all trailing whitespace in file.
 function! StripWhitespace ()
   exec ':%s/ \+$//gc'

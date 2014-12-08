@@ -480,6 +480,10 @@ inoremap # X<BS>#
 " Compile LESS files.
 nnoremap <leader>m :w <BAR> !lessc % > %:t:r.css<CR><space>
 
+" Increase and decerase numbers under the cursor.
+nnoremap <leader>a <C-a>
+nnoremap <leader>x <C-x>
+
 " Exit to normal mode with 'jj'
 inoremap jj <ESC>
 

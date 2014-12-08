@@ -15,11 +15,6 @@ Bundle 'chriskempson/base16-vim'
 " Superb comments functionality.
 Bundle 'tomtom/tcomment_vim'
 
-" https://github.com/tpope/vim-abolish
-" Bundle 'tpope/vim-abolish'
-
-" https://github.com/plasticboy/vim-markdown
-" Bundle 'plasticboy/vim-markdown'
 
 " Rails features for vim.
 Bundle 'tpope/vim-rails'
@@ -36,8 +31,6 @@ Bundle 'scrooloose/syntastic'
 " Add browser prefixes to CSS3 properties.
 Bundle 'vim-scripts/prefixer.vim'
 
-" Track time spent in projects.
-Bundle 'wakatime/vim-wakatime'
 
 " Looking up documentation.
 Bundle 'Keithbsmiley/investigate.vim'

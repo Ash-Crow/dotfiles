@@ -152,11 +152,11 @@ set laststatus=2
 " Change color of statusline according to current mode.
 function! InsertStatuslineColor(mode)
   if a:mode == 'i'
-    hi StatusLine ctermbg=black ctermfg=darkblue
+    hi StatusLine ctermfg=4
   elseif a:mode == 'r'
-    hi StatusLine ctermbg=black ctermfg=darkblue
+    hi StatusLine ctermfg=1
   else
-    hi StatusLine ctermbg=red ctermfg=black
+    hi StatusLine ctermbg=18 ctermfg=blue
   endif
 endfunction
 
@@ -165,11 +165,11 @@ au InsertEnter * call InsertStatuslineColor(v:insertmode)
 au InsertChange * call InsertStatuslineColor(v:insertmode)
 
 " Change back to default when exiting insert mode.
-au InsertLeave * hi StatusLine ctermbg=red ctermfg=black
+au InsertLeave * hi StatusLine ctermbg=10 ctermfg=7
 
 " Default the statusline when entering Vim.
-hi StatusLine ctermbg=red ctermfg=black
-hi StatusLineNC ctermbg=darkgrey ctermfg=black
+hi StatusLine ctermbg=10 ctermfg=7
+hi StatusLineNC ctermbg=10 ctermfg=11
 
 " Set the content of the statusline.
 set statusline=%02n)\ 
@@ -178,7 +178,7 @@ set statusline+=%(\ %m%r%y%)
 set statusline+=%=%-14.(%l,%c%)\ %L,%P
 
 " Change the color of the vertical splitter.
-hi VertSplit ctermbg=black ctermfg=grey
+hi VertSplit ctermbg=black ctermfg=darkgrey
 
 " -----------------------------------------------------------------------------
 "  7 Mulitple tab pages
@@ -373,6 +373,13 @@ set wildmenu
 " -----------------------------------------------------------------------------
 "  25 Various
 " -----------------------------------------------------------------------------
+
+" Same background for line numbers as main window.
+hi LineNr ctermbg=0
+
+" Different color for current line number.
+hi CursorLineNr ctermbg=0 ctermfg=9
+hi CursorLine ctermbg=0
 
 " Alow virtual edit in visual block.
 set virtualedit=block

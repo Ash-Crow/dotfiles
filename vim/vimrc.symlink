@@ -569,6 +569,9 @@ nnoremap <leader>f :find *
 nnoremap <leader>s :sfind *
 nnoremap <leader>v :vert sfind *
 
+" Open the local-directory browser of current file.
+nnoremap <leader>k :Explore<CR>
+
 if exists(':Tabularize')
   nmap <leader>a= :Tabularize /=<CR>
   vmap <leader>a= :Tabularize /=<CR>

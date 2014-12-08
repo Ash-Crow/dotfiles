@@ -176,6 +176,7 @@ hi StatusLineNC ctermbg=10 ctermfg=11
 " Set the content of the statusline.
 set statusline=
 set statusline+=%<%f
+set statusline+=%(\ %M%)
 set statusline+=%(\ %Y%)
 set statusline+=%(\ %R%)
 set statusline+=%= 

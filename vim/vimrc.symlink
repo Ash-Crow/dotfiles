@@ -535,7 +535,8 @@ map <C-k> <C-w>k
 map <C-l> <C-w>l
 
 " Quickly change buffers by pressing leader + b and a number.
-nnoremap <leader>b :ls<CR>:buffer<Space>
+nnoremap <leader>b :buffer <C-z><S-Tab>
+nnoremap <leader>B :vert sbuffer <C-z><S-Tab>
 
 " Copy and paste to system clipboard.
 vmap <leader>y "+y

@@ -9,7 +9,7 @@ call vundle#rc()
 " Bundles!
 Bundle 'gmarik/vundle'
 
-" Solarized is beautiful.
+" Use the Base16 color scheme.
 Bundle 'chriskempson/base16-vim'
 
 " Superb comments functionality.

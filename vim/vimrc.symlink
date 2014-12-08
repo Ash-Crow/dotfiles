@@ -564,6 +564,11 @@ nnoremap tl :tablast<CR>
 nnoremap tn :tabnew<CR>
 nnoremap tq :tabclose<CR>
 
+" Map keys to find files.
+nnoremap <leader>f :find *
+nnoremap <leader>s :sfind *
+nnoremap <leader>v :vert sfind *
+
 if exists(':Tabularize')
   nmap <leader>a= :Tabularize /=<CR>
   vmap <leader>a= :Tabularize /=<CR>

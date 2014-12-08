@@ -556,11 +556,6 @@ cmap w!! w !sudo tee % >/dev/null
 noremap <leader>i :set ts=4 sw=4 noet <BAR> retab! <BAR> set ts=2 sw=2 et <BAR> retab<CR>
 noremap <leader>o :set ts=2 sw=2 noet <BAR> retab! <BAR> set ts=4 sw=4 et <BAR> retab<CR>
 
-" set winminwidth=0
-" nmap <Leader>h <C-W>h500<C-W>>
-" nmap <Leader>l <C-W>l500<C-W>>
-" :nnoremap <leader>0 :tabedit %<cr>
-
 " Better tab navigation.
 nnoremap th :tabfirst<CR>
 nnoremap tj :tabprev<CR>

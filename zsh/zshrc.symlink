@@ -70,6 +70,9 @@ then
 
   export PATH=/usr/local/opt/coreutils/libexec/gnubin:$PATH
   export PATH=$PATH:/usr/local/texlive/2012basic/bin/universal-darwin
+
+  # Set up autojump
+  [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 fi
 
 unset config_files

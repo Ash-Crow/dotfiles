@@ -359,6 +359,10 @@ set wildignore+=*.exe,*.swp,.DS_Store
 " Turn on wild menu.
 set wildmenu
 
+" Enable persistent undo, and set location of undo files directory.
+set undofile
+set undodir=$HOME/.vimundo
+
 " -----------------------------------------------------------------------------
 "  21 Executing external commands
 " -----------------------------------------------------------------------------

@@ -41,10 +41,11 @@ Bundle 'scrooloose/syntastic'
 " Add browser prefixes to CSS3 properties.
 Bundle 'vim-scripts/prefixer.vim'
 
-
 " Looking up documentation.
 Bundle 'Keithbsmiley/investigate.vim'
 
+" Text filtering and alignment.
+Bundle 'godlygeek/tabular'
 
 
 " Set color scheme.
@@ -543,6 +544,12 @@ nnoremap tq :tabclose<CR>
 
 " Lessc this shit
 nnoremap ,m :w <BAR> !lessc % > %:t:r.css<CR><space>
+if exists(':Tabularize')
+  nmap <leader>a= :Tabularize /=<CR>
+  vmap <leader>a= :Tabularize /=<CR>
+  nmap <leader>a: :Tabularize /:\zs<CR>
+  vmap <leader>a: :Tabularize /:\zs<CR>
+endif
 
 " Look up documentation with leader + K.
 nnoremap <leader>K :call investigate#Investigate()<CR>

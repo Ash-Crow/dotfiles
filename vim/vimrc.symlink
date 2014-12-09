@@ -5,9 +5,6 @@
 " Init vim-plug.
 call plug#begin('~/.vim/plugged')
 
-" Bundles!
-Plug 'gmarik/vundle'
-
 " Use the Base16 color scheme.
 Plug 'chriskempson/base16-vim'
 

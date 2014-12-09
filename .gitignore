@@ -2,6 +2,5 @@ git/gitconfig.symlink
 vim/vim.symlink/.netrwhist
 vim/vim.symlink/.VimballRecord
 
-# Ignore all vim plugins, except the vundle bundle
-vim/vim.symlink/bundle/*
-!vim/vim.symlink/bundle/vundle
+# Ignore all vim plugins.
+vim/vim.symlink/plugged/*

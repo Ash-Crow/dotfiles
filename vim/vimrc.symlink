@@ -160,12 +160,13 @@ function! InsertStatuslineColor(mode)
   endif
 endfunction
 
-" Change statusline colors when entering or changing insert mode.
-au InsertEnter * call InsertStatuslineColor(v:insertmode)
-au InsertChange * call InsertStatuslineColor(v:insertmode)
-
-" Change back to default when exiting insert mode.
-au InsertLeave * hi StatusLine ctermbg=10 ctermfg=7
+" Change statusline colors when entering and changing insert mode, and change
+" back to default colors when exiting insert mode.
+augroup ChangeStatuslineColor
+  autocmd!
+  autocmd InsertEnter,InsertChange * call InsertStatuslineColor(v:insertmode)
+  autocmd InsertLeave * highlight StatusLine ctermbg=10 ctermfg=7
+augroup END
 
 " Default the statusline when entering Vim.
 hi StatusLine ctermbg=10 ctermfg=7

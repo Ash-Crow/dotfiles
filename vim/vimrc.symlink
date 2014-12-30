@@ -516,56 +516,56 @@ inoremap jj <ESC>
 nnoremap <C-y> <C-]>
 
 " Toggle comments with leader + c.
-map <leader>c <c-_><c-_>
+nmap <leader>c <c-_><c-_>
 
 " Change linenumber mode with leader + l.
 nnoremap <leader>l :call NumberToggle()<CR>
 
 " Reflow paragraph with Q in normal and visual mode.
 nnoremap Q gqap
-vnoremap Q gq
+xnoremap Q gq
 
 " Sane movement with wrap turned on.
 nnoremap j gj
 nnoremap k gk
-vnoremap j gj
-vnoremap k gk
+xnoremap j gj
+xnoremap k gk
 
 " Quickly edit/reload the vimrc file.
-nmap <silent> <leader>ev :e $MYVIMRC<CR>
-nmap <silent> <leader>sv :so $MYVIMRC<CR>
+nnoremap <silent> <leader>ev :e $MYVIMRC<CR>
+nnoremap <silent> <leader>sv :so $MYVIMRC<CR>
 
 " Use Q for formatting the current paragraph (or selection).
-vmap Q gq
-nmap Q gqap
+xnoremap Q gq
+nnoremap Q gqap
 
 " Disable arrow keys in both normal and insert mode.
-map <up> <nop>
-map <down> <nop>
-map <left> <nop>
-map <right> <nop>
-imap <up> <nop>
-imap <down> <nop>
-imap <left> <nop>
-imap <right> <nop>
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
 
 " Easy window navigation.
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 
 " Quickly change buffers by pressing leader + b and a number.
 nnoremap <leader>b :buffer <C-z><S-Tab>
 nnoremap <leader>B :vert sbuffer <C-z><S-Tab>
 
 " Copy and paste to system clipboard.
-vmap <leader>y "+y
-vmap <leader>d "+d
-nmap <leader>p "+p
-nmap <leader>P "+P
-vmap <leader>p "+p
-vmap <leader>P "+P
+xnoremap <leader>y "+y
+xnoremap <leader>d "+d
+nnoremap <leader>p "+p
+nnoremap <leader>P "+P
+xnoremap <leader>p "+p
+xnoremap <leader>P "+P
 
 " Save a file with leader + w.
 nnoremap <leader>w :w<CR>
@@ -593,14 +593,14 @@ nnoremap <leader>v :vert sfind *
 nnoremap <leader>k :Explore<CR>
 
 if exists(':Tabularize')
-  nmap <leader>a= :Tabularize /=<CR>
-  vmap <leader>a= :Tabularize /=<CR>
-  nmap <leader>a: :Tabularize /:\zs<CR>
-  vmap <leader>a: :Tabularize /:\zs<CR>
+  nnoremap <leader>a= :Tabularize /=<CR>
+  xnoremap <leader>a= :Tabularize /=<CR>
+  nnoremap <leader>a: :Tabularize /:\zs<CR>
+  xnoremap <leader>a: :Tabularize /:\zs<CR>
 endif
 
 " Look up documentation with leader + K.
 nnoremap <leader>K :call investigate#Investigate()<CR>
 
 " Display highlight group of word below cursor.
-map <F9> :echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')<CR>
+nnoremap <F9> :echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')<CR>

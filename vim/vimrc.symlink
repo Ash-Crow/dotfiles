@@ -135,22 +135,12 @@ syntax enable
 " Don't highlight searches.
 set nohlsearch
 
-autocmd Syntax * syn match ExtraWhitespace /\s\+$\| \+\ze\t/ containedin=ALL
-
 " -----------------------------------------------------------------------------
 "  6 Multiple windows
 " -----------------------------------------------------------------------------
 
 " Always show the statusline.
 set laststatus=2
-
-" Change statusline colors when entering and changing insert mode, and change
-" back to default colors when exiting insert mode.
-augroup ChangeStatuslineColor
-  autocmd!
-  autocmd InsertEnter,InsertChange * call InsertStatuslineColor(v:insertmode)
-  autocmd InsertLeave * highlight StatusLine ctermbg=10 ctermfg=7
-augroup END
 
 " Set the content of the statusline.
 set statusline=
@@ -275,11 +265,6 @@ set foldmethod=syntax
 " Disable Ruby comment folds.
 let ruby_no_comment_fold=1
 
-" Don't screw up folds when inserting text that might affect them, until
-" leaving insert mode. Foldmethod is local to the window.
-autocmd InsertEnter * let w:last_fdm=&foldmethod | setlocal foldmethod=manual
-autocmd InsertLeave * let &l:foldmethod=w:last_fdm
-
 " -----------------------------------------------------------------------------
 "  16 Diff mode
 " -----------------------------------------------------------------------------
@@ -357,17 +342,6 @@ let g:syntastic_ruby_rubocop_args = '-R'
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_enable_signs = 1
 let g:syntastic_stl_format = 'SYNTAX(%E{err: %e}%B{ }%W{warn: %w})'
-
-augroup unimpaired_paste
-  autocmd!
-  autocmd InsertLeave *
-        \ if exists('s:paste') |
-        \   let &paste = s:paste |
-        \   let &mouse = s:mouse |
-        \   unlet s:paste |
-        \   unlet s:mouse |
-        \ endif
-augroup END
 
 " -----------------------------------------------------------------------------
 "  26 Remapping
@@ -553,3 +527,40 @@ function! s:setup_paste() abort
   set paste
   set mouse=
 endfunction
+
+" -----------------------------------------------------------------------------
+"  29 Autocommand groups
+" -----------------------------------------------------------------------------
+
+" Change statusline colors when entering and changing insert mode, and change
+" back to default colors when exiting insert mode.
+augroup ChangeStatuslineColor
+  autocmd!
+  autocmd InsertEnter,InsertChange * call InsertStatuslineColor(v:insertmode)
+  autocmd InsertLeave * highlight StatusLine ctermbg=10 ctermfg=7
+augroup END
+
+augroup unimpaired_paste
+  autocmd!
+  autocmd InsertLeave *
+        \ if exists('s:paste') |
+        \   let &paste = s:paste |
+        \   let &mouse = s:mouse |
+        \   unlet s:paste |
+        \   unlet s:mouse |
+        \ endif
+augroup END
+
+" Highlight extra, unwanted whitespace.
+augroup HighlightExtraWhitespace
+  autocmd!
+  autocmd Syntax * syn match ExtraWhitespace /\s\+$\| \+\ze\t/ containedin=ALL
+augroup END
+
+" Don't screw up folds when inserting text that might affect them, until
+" leaving insert mode. Foldmethod is local to the window.
+augroup FixFoldWhenInserting
+  autocmd!
+  autocmd InsertEnter * let w:last_fdm=&foldmethod | setlocal foldmethod=manual
+  autocmd InsertLeave * let &l:foldmethod=w:last_fdm
+augroup END

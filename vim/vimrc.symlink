@@ -377,14 +377,10 @@ function! StripWhitespace ()
 endfunction
 map ,s :call StripWhitespace ()<CR>
 
-" Toggle linenumber mode.
+" Toggle relative linenumbers.
 function! NumberToggle()
-  if(&relativenumber == 1)
-    set norelativenumber
-  else
-    set relativenumber
-  endif
-endfunc
+  set relativenumber!
+endfunction
 
 " YOPO (You Only Paste Once) functions. See commit message for more info.
 function! s:setup_paste() abort

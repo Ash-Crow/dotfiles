@@ -56,9 +56,6 @@ colorscheme base16-eighties
 "  1 Important
 " -----------------------------------------------------------------------------
 
-" Don't behave like Vi.
-set nocompatible
-
 " Key sequence to toggle paste mode.
 set pastetoggle=<F2>
 

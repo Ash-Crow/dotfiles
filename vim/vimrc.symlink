@@ -144,17 +144,6 @@ autocmd Syntax * syn match ExtraWhitespace /\s\+$\| \+\ze\t/ containedin=ALL
 " Always show the statusline.
 set laststatus=2
 
-" Change color of statusline according to current mode.
-function! InsertStatuslineColor(mode)
-  if a:mode == 'i'
-    highlight StatusLine ctermfg=4
-  elseif a:mode == 'r'
-    highlight StatusLine ctermfg=1
-  else
-    highlight StatusLine ctermbg=18 ctermfg=blue
-  endif
-endfunction
-
 " Change statusline colors when entering and changing insert mode, and change
 " back to default colors when exiting insert mode.
 augroup ChangeStatuslineColor
@@ -286,18 +275,6 @@ set foldmethod=syntax
 " Disable Ruby comment folds.
 let ruby_no_comment_fold=1
 
-" Custom fold function.
-function! NeatFoldText() "{{{2
-  let line = ' ' . substitute(getline(v:foldstart), '^\s*"\?\s*\|\s*"\?\s*{{' . '{\d*\s*', '', 'g') . ' '
-  let lines_count = v:foldend - v:foldstart + 1
-  let lines_count_text = '| ' . printf("%10s", lines_count . ' lines') . ' |'
-  let foldchar = '·'
-  let foldtextstart = strpart('+' . repeat(foldchar, v:foldlevel*2) . line, 0, (winwidth(0)*2)/3)
-  let foldtextend = lines_count_text . repeat(foldchar, 8)
-  let foldtextlength = strlen(substitute(foldtextstart . foldtextend, '.', 'x', 'g')) + &foldcolumn
-  return foldtextstart . repeat(foldchar, winwidth(0)-foldtextlength) . foldtextend
-endfunction
-
 " Don't screw up folds when inserting text that might affect them, until
 " leaving insert mode. Foldmethod is local to the window.
 autocmd InsertEnter * let w:last_fdm=&foldmethod | setlocal foldmethod=manual
@@ -374,35 +351,12 @@ set virtualedit=block
 " Open investigate in Dash
 let g:investigate_use_dash=1
 
-" Strip all trailing whitespace in file.
-function! StripWhitespace ()
-  exec ':%s/ \+$//gc'
-endfunction
-map ,s :call StripWhitespace ()<CR>
-
-" Toggle linenumber mode.
-function! NumberToggle()
-  if(&relativenumber == 1)
-    set norelativenumber
-  else
-    set relativenumber
-  endif
-endfunc
-
 
 let g:syntastic_ruby_checkers = ['rubocop']
 let g:syntastic_ruby_rubocop_args = '-R'
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_enable_signs = 1
 let g:syntastic_stl_format = 'SYNTAX(%E{err: %e}%B{ }%W{warn: %w})'
-
-" YOPO (You Only Paste Once) functions. See commit message for more info.
-function! s:setup_paste() abort
-  let s:paste = &paste
-  let s:mouse = &mouse
-  set paste
-  set mouse=
-endfunction
 
 augroup unimpaired_paste
   autocmd!
@@ -549,3 +503,53 @@ highlight StatusLineNC ctermbg=10 ctermfg=11
 highlight User1 ctermbg=10 ctermfg=1
 highlight VertSplit ctermbg=black ctermfg=darkgrey
 highlight clear SignColumn
+
+" -----------------------------------------------------------------------------
+"  28 Custom functions
+" -----------------------------------------------------------------------------
+
+" Change color of statusline according to current mode.
+function! InsertStatuslineColor(mode)
+  if a:mode == 'i'
+    highlight StatusLine ctermfg=4
+  elseif a:mode == 'r'
+    highlight StatusLine ctermfg=1
+  else
+    highlight StatusLine ctermbg=18 ctermfg=blue
+  endif
+endfunction
+
+" Custom fold function.
+function! NeatFoldText()
+  let line = ' ' . substitute(getline(v:foldstart), '^\s*"\?\s*\|\s*"\?\s*{{' . '{\d*\s*', '', 'g') . ' '
+  let lines_count = v:foldend - v:foldstart + 1
+  let lines_count_text = '| ' . printf("%10s", lines_count . ' lines') . ' |'
+  let foldchar = '·'
+  let foldtextstart = strpart('+' . repeat(foldchar, v:foldlevel*2) . line, 0, (winwidth(0)*2)/3)
+  let foldtextend = lines_count_text . repeat(foldchar, 8)
+  let foldtextlength = strlen(substitute(foldtextstart . foldtextend, '.', 'x', 'g')) + &foldcolumn
+  return foldtextstart . repeat(foldchar, winwidth(0)-foldtextlength) . foldtextend
+endfunction
+
+" Strip all trailing whitespace in file.
+function! StripWhitespace ()
+  exec ':%s/ \+$//gc'
+endfunction
+map ,s :call StripWhitespace ()<CR>
+
+" Toggle linenumber mode.
+function! NumberToggle()
+  if(&relativenumber == 1)
+    set norelativenumber
+  else
+    set relativenumber
+  endif
+endfunc
+
+" YOPO (You Only Paste Once) functions. See commit message for more info.
+function! s:setup_paste() abort
+  let s:paste = &paste
+  let s:mouse = &mouse
+  set paste
+  set mouse=
+endfunction

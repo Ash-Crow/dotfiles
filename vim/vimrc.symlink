@@ -334,14 +334,14 @@ nnoremap <silent> yO :call <SID>setup_paste()<CR>O
 " -----------------------------------------------------------------------------
 
 highlight CursorLineNr ctermbg=0 ctermfg=9
-highlight ExtraWhitespace ctermbg=red ctermfg=white
+highlight ExtraWhitespace ctermbg=1 ctermfg=7
 highlight FoldColumn term=bold ctermbg=10 ctermfg=7
 highlight Folded term=bold ctermbg=0 ctermfg=7
 highlight LineNr ctermbg=0
 highlight StatusLine ctermbg=10 ctermfg=7
 highlight StatusLineNC ctermbg=10 ctermfg=11
 highlight User1 ctermbg=10 ctermfg=1
-highlight VertSplit ctermbg=black ctermfg=darkgrey
+highlight VertSplit ctermbg=0 ctermfg=11
 highlight clear SignColumn
 
 " -----------------------------------------------------------------------------
@@ -355,7 +355,7 @@ function! InsertStatuslineColor(mode)
   elseif a:mode == 'r'
     highlight StatusLine ctermfg=1
   else
-    highlight StatusLine ctermbg=18 ctermfg=blue
+    highlight StatusLine ctermfg=3
   endif
 endfunction
 

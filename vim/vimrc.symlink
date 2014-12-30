@@ -259,6 +259,7 @@ nnoremap <C-y> <C-]>
 
 " Toggle comments with leader + c.
 nmap <leader>c <c-_><c-_>
+xmap <leader>c <c-_><c-_>
 
 " Change linenumber mode with leader + l.
 nnoremap <leader>l :call NumberToggle()<CR>

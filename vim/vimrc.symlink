@@ -232,11 +232,6 @@ let g:syntastic_stl_format = 'SYNTAX(%E{err: %e}%B{ }%W{warn: %w})'
 "  26 Remapping
 " ----------------------------------------------------------------------------
 
-" YOPO mappings.
-nnoremap <silent> <Plug>unimpairedPaste :call <SID>setup_paste()<CR>
-nnoremap <silent> yo :call <SID>setup_paste()<CR>o
-nnoremap <silent> yO :call <SID>setup_paste()<CR>O
-
 " Set leader to <space>
 let mapleader = "\<Space>"
 
@@ -347,6 +342,10 @@ nnoremap <leader>K :call investigate#Investigate()<CR>
 
 " Display highlight group of word below cursor.
 nnoremap <F9> :echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')<CR>
+
+" YOPO mappings.
+nnoremap <silent> yo :call <SID>setup_paste()<CR>o
+nnoremap <silent> yO :call <SID>setup_paste()<CR>O
 
 " -----------------------------------------------------------------------------
 "  27 Color highlighting

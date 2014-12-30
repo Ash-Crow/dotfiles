@@ -252,10 +252,6 @@ inoremap jj <ESC>
 " Remap tagging because Norwegian keyboards <3.
 nnoremap <C-y> <C-]>
 
-" Toggle comments with leader + c.
-nmap <leader>c <c-_><c-_>
-xmap <leader>c <c-_><c-_>
-
 " Change linenumber mode with leader + l.
 nnoremap <leader>l :call NumberToggle()<CR>
 
@@ -330,16 +326,6 @@ nnoremap <leader>v :vert sfind *
 " Open the local-directory browser of current file.
 nnoremap <leader>k :Explore<CR>
 
-if exists(':Tabularize')
-  nnoremap <leader>a= :Tabularize /=<CR>
-  xnoremap <leader>a= :Tabularize /=<CR>
-  nnoremap <leader>a: :Tabularize /:\zs<CR>
-  xnoremap <leader>a: :Tabularize /:\zs<CR>
-endif
-
-" Look up documentation with leader + K.
-nnoremap <leader>K :call investigate#Investigate()<CR>
-
 " Display highlight group of word below cursor.
 nnoremap <F9> :echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')<CR>
 
@@ -412,6 +398,25 @@ function! s:setup_paste() abort
   set mouse=
 endfunction
 
+" Only set plugin mappings if the related plugin is present.
+function! Plugins()
+  if exists(':Tabularize')
+    nnoremap <leader>a= :Tabularize /=<CR>
+    xnoremap <leader>a= :Tabularize /=<CR>
+    nnoremap <leader>a: :Tabularize /:\zs<CR>
+    xnoremap <leader>a: :Tabularize /:\zs<CR>
+  endif
+
+  if exists(':TComment')
+    nmap <leader>c <c-_><c-_>
+    xmap <leader>c <c-_><c-_>
+  endif
+
+  if exists('g:investigate_plugin_loaded')
+    nnoremap <leader>K :call investigate#Investigate()<CR>
+  endif
+endfunction
+
 " -----------------------------------------------------------------------------
 "  29 Autocommand groups
 " -----------------------------------------------------------------------------
@@ -447,4 +452,10 @@ augroup FixFoldWhenInserting
   autocmd!
   autocmd InsertEnter * let w:last_fdm=&foldmethod | setlocal foldmethod=manual
   autocmd InsertLeave * let &l:foldmethod=w:last_fdm
+augroup END
+
+" Set plugin mappings after all the startup stuff.
+augroup Plugins
+  autocmd!
+  autocmd VimEnter * call Plugins()
 augroup END

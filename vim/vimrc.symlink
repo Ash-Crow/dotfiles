@@ -135,8 +135,6 @@ syntax enable
 " Don't highlight searches.
 set nohlsearch
 
-" Highlight extra, unwanted whitespace.
-highlight ExtraWhitespace ctermbg=red ctermfg=white
 autocmd Syntax * syn match ExtraWhitespace /\s\+$\| \+\ze\t/ containedin=ALL
 
 " -----------------------------------------------------------------------------
@@ -165,10 +163,6 @@ augroup ChangeStatuslineColor
   autocmd InsertLeave * highlight StatusLine ctermbg=10 ctermfg=7
 augroup END
 
-" Default the statusline when entering Vim.
-highlight StatusLine ctermbg=10 ctermfg=7
-highlight StatusLineNC ctermbg=10 ctermfg=11
-
 " Set the content of the statusline.
 set statusline=
 set statusline+=%<%f
@@ -179,12 +173,6 @@ set statusline+=%=
 set statusline+=\ %1*%{SyntasticStatuslineFlag()}%*\ 
 set statusline+=\ %{fugitive#statusline()}\ 
 set statusline+=\ LINE(%l\/%L)
-
-" Change the color of the vertical splitter.
-highlight VertSplit ctermbg=black ctermfg=darkgrey
-
-" Define custom user highlight groups.
-highlight User1 ctermbg=10 ctermfg=1
 
 " -----------------------------------------------------------------------------
 "  7 Mulitple tab pages
@@ -310,10 +298,6 @@ function! NeatFoldText() "{{{2
   return foldtextstart . repeat(foldchar, winwidth(0)-foldtextlength) . foldtextend
 endfunction
 
-" Color setup for folds.
-highlight Folded term=bold ctermbg=0 ctermfg=7
-highlight FoldColumn term=bold ctermbg=10 ctermfg=7
-
 " Don't screw up folds when inserting text that might affect them, until
 " leaving insert mode. Foldmethod is local to the window.
 autocmd InsertEnter * let w:last_fdm=&foldmethod | setlocal foldmethod=manual
@@ -384,12 +368,6 @@ set undodir=$HOME/.vimundo
 "  25 Various
 " -----------------------------------------------------------------------------
 
-" Same background for line numbers as main window.
-highlight LineNr ctermbg=0
-
-" Different color for current line number.
-highlight CursorLineNr ctermbg=0 ctermfg=9
-
 " Alow virtual edit in visual block.
 set virtualedit=block
 
@@ -401,9 +379,6 @@ function! StripWhitespace ()
   exec ':%s/ \+$//gc'
 endfunction
 map ,s :call StripWhitespace ()<CR>
-
-" Clear SignColumn column.
-highlight clear SignColumn
 
 " Toggle linenumber mode.
 function! NumberToggle()
@@ -558,3 +533,19 @@ nnoremap <leader>K :call investigate#Investigate()<CR>
 
 " Display highlight group of word below cursor.
 nnoremap <F9> :echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')<CR>
+
+
+" -----------------------------------------------------------------------------
+"  27 Color highlighting
+" -----------------------------------------------------------------------------
+
+highlight CursorLineNr ctermbg=0 ctermfg=9
+highlight ExtraWhitespace ctermbg=red ctermfg=white
+highlight FoldColumn term=bold ctermbg=10 ctermfg=7
+highlight Folded term=bold ctermbg=0 ctermfg=7
+highlight LineNr ctermbg=0
+highlight StatusLine ctermbg=10 ctermfg=7
+highlight StatusLineNC ctermbg=10 ctermfg=11
+highlight User1 ctermbg=10 ctermfg=1
+highlight VertSplit ctermbg=black ctermfg=darkgrey
+highlight clear SignColumn

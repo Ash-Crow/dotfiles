@@ -269,10 +269,6 @@ xnoremap k gk
 nnoremap <silent> <leader>ev :e $MYVIMRC<CR>
 nnoremap <silent> <leader>sv :so $MYVIMRC<CR>
 
-" Use Q for formatting the current paragraph (or selection).
-xnoremap Q gq
-nnoremap Q gqap
-
 " Disable arrow keys in both normal and insert mode.
 nnoremap <up> <nop>
 nnoremap <down> <nop>

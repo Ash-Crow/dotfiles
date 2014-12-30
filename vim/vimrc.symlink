@@ -2,49 +2,25 @@
 "  Init stuff
 " -----------------------------------------------------------------------------
 
-" Init vim-plug.
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.vim/plugged')       " initialize vim-plug
 
-" Use the Base16 color scheme.
-Plug 'chriskempson/base16-vim'
-
-" Superb comments functionality.
-Plug 'tomtom/tcomment_vim'
-
-" Git wrapper.
-Plug 'tpope/vim-fugitive'
-
-" Rails features for vim.
-Plug 'tpope/vim-rails'
-
-" Mappings to manipulate surroundings: parentheses, brackets, and more.
-Plug 'tpope/vim-surround'
-
-" Syntax plugins
-Plug 'cakebaker/scss-syntax.vim'
-Plug 'jdaihl/vim-less'
-Plug 'JulesWang/css.vim'
-Plug 'kchmck/vim-coffee-script'
-Plug 'mustache/vim-mustache-handlebars'
-Plug 'othree/html5.vim'
-
-" Highlight colors in CSS files.
-Plug 'ap/vim-css-color'
-
-" Check syntax for errors.
-Plug 'scrooloose/syntastic'
-
-" Add browser prefixes to CSS3 properties.
-Plug 'vim-scripts/prefixer.vim'
-
-" Looking up documentation.
-Plug 'Keithbsmiley/investigate.vim'
-
-" Text filtering and alignment.
-Plug 'godlygeek/tabular'
-
-" Enhance netwr (directory explorer).
-Plug 'tpope/vim-vinegar'
+Plug 'chriskempson/base16-vim'          " base16 color scheme
+Plug 'tomtom/tcomment_vim'              " comments
+Plug 'tpope/vim-fugitive'               " git wrapper
+Plug 'tpope/vim-rails'                  " rails features
+Plug 'tpope/vim-surround'               " manipualte surroundings
+Plug 'cakebaker/scss-syntax.vim'        " SCSS syntax
+Plug 'jdaihl/vim-less'                  " LESS syntax
+Plug 'JulesWang/css.vim'                " CSS syntax
+Plug 'kchmck/vim-coffee-script'         " coffee script syntax
+Plug 'mustache/vim-mustache-handlebars' " mustache syntax
+Plug 'othree/html5.vim'                 " HTML5 syntax
+Plug 'ap/vim-css-color'                 " highlight css colors
+Plug 'scrooloose/syntastic'             " check for syntax errors
+Plug 'vim-scripts/prefixer.vim'         " add CSS3 browser prefixes
+Plug 'Keithbsmiley/investigate.vim'     " look up documentation
+Plug 'godlygeek/tabular'                " text filtering and alignment
+Plug 'tpope/vim-vinegar'                " enhance netwr
 
 call plug#end()
 
@@ -56,27 +32,17 @@ colorscheme base16-eighties
 "  1 Important
 " -----------------------------------------------------------------------------
 
-" Key sequence to toggle paste mode.
-set pastetoggle=<F2>
+set pastetoggle=<F2>                    " toggle paste mode with F2
 
 " -----------------------------------------------------------------------------
 "  2 Moving around, searching and patterns
 " -----------------------------------------------------------------------------
 
-" Which commands wrap to another line? Backspace and cursors.
-set whichwrap+=<,>,h,l,[,]
-
-" Don't jump to the start of line when scrolling.
-set nostartofline
-
-" Set path to the folder from which we opened Vim.
-set path=$PWD/**
-
-" Do incremental searching.
-set incsearch
-
-" Ignore case when searching.
-set ignorecase
+set whichwrap+=<,>,h,l,[,]              " which commands wrap to another line?
+set nostartofline                       " don't jump to start of line when scrolling
+set path=$PWD/**                        " use current folder for file searching
+set incsearch                           " use incremental searching
+set ignorecase                          " ignore case when searching
 
 " -----------------------------------------------------------------------------
 "  3 Tags
@@ -87,39 +53,16 @@ set ignorecase
 "  4 Displaying text
 " -----------------------------------------------------------------------------
 
-" Show some lines around the cursor.
-set scrolloff=5
-
-" Wrap lines.
-set wrap
-
-" Soft break lines at end of window.
-set linebreak
-
-" Preserve indentation.
-set breakindent
-
-" Meh.
-set fillchars=fold:\
-set fillchars+=vert:\|
-
-" Command line height.
-set cmdheight=2
-
-" List of strings used for list mode.
-set listchars=tab:▸\ ,trail:~
-
-" Display unprintable characters.
-" set list
-
-" Turn off lazy redraw.
-set nolazyredraw
-
-" Show line numbers.
-set number
-
-" Show relative line numbers.
-set relativenumber
+set scrolloff=5                         " show five lines around the cursor
+set wrap                                " wrap lines
+set linebreak                           " soft break lines at end of window
+set breakindent                         " preserve indentation in wrapped text
+set fillchars=fold:\\,vert:\|           " used by statusline, folds and filler lines
+set cmdheight=2                         " height of command line
+set nolazyredraw                        " turn off lazy redraw
+set listchars=tab:▸\ ,trail:~           " strings used for list mode
+set number                              " show line numbers
+set relativenumber                      " show relative line numbers
 
 " -----------------------------------------------------------------------------
 "  5 Syntax, highlighting and spelling
@@ -129,21 +72,16 @@ filetype off
 filetype indent on
 filetype plugin indent on
 
-" Enable syntax themes.
-syntax enable
-
-" Don't highlight searches.
-set nohlsearch
+syntax enable                           " enable syntax themes
+set nohlsearch                          " don't highlight search matches
 
 " -----------------------------------------------------------------------------
 "  6 Multiple windows
 " -----------------------------------------------------------------------------
 
-" Always show the statusline.
-set laststatus=2
+set laststatus=2                        " always show the statusline
 
-" Set the content of the statusline.
-set statusline=
+set statusline=                         " set the content of the statusline
 set statusline+=%<%f
 set statusline+=%(\ %M%)
 set statusline+=%(\ %Y%)
@@ -162,8 +100,7 @@ set statusline+=\ LINE(%l\/%L)
 "  8 Terminal
 " -----------------------------------------------------------------------------
 
-" Terminal connection is fast, baby!
-set ttyfast
+set ttyfast                             " terminal connection is fast
 
 " -----------------------------------------------------------------------------
 "  9 Using the mouse
@@ -179,20 +116,11 @@ set ttyfast
 "  11 Messages and info
 " -----------------------------------------------------------------------------
 
-" Shorten messages.
-set shortmess=filtIoOA
-
-" Don't display incomplete commands.
-set noshowcmd
-
-" Show the cursor position all the time.
-set ruler
-
-" Tell us about changes.
-set report=0
-
-" Shut the fuck up!
-set visualbell
+set shortmess=filtIoOA                  " shorten messages
+set noshowcmd                           " don't display incomplete commands
+set ruler                               " show cursor position
+set report=0                            " repot changes
+set visualbell                          " use visual bell instead of beeping
 
 " -----------------------------------------------------------------------------
 "  12 Selecting text
@@ -203,45 +131,22 @@ set visualbell
 "  13 Editing text
 " -----------------------------------------------------------------------------
 
-" Wrap at 80 chars by default.
-" set tw=80
-
-" Allow backspacing over everything in insert mode.
-set backspace=2
-
-" Support for numbered/bullet lists.
-set formatoptions+=n
-
-" Brackets/braces that is.
-set showmatch
-
-" Duration to show matching brace (1/10 sec).
-set matchtime=5
+set backspace=2                         " backspace over everything in insert mode
+set formatoptions+=n                    " support for numbered lists
+set showmatch                           " show matching brackets
+set matchtime=5                         " duration to show matching brackets
 
 " -----------------------------------------------------------------------------
 "  14 Tabs and indenting
 " -----------------------------------------------------------------------------
 
-" Number of spaces a <Tab> in the text stands for.
-set tabstop=2
-
-" Number of spaces used for each step of (auto)indent.
-set shiftwidth=2
-
-" Fuck tabs.
+set tabstop=2                           " number of spaces <Tab> stands for
+set shiftwidth=2                        " number of spaces used for each indent step
 set nosmarttab
-
-" If non-zero, number of spaces to insert for a <Tab>.
-set softtabstop=2
-
-" Expand tabs to spaces.
-set expandtab
-
-" Automatic indent new lines.
-set autoindent
-
-" Be smart about it.
-set smartindent
+set softtabstop=2                       " <Tab> equals two spaces
+set expandtab                           " expand <Tab> to spaces in insert mode
+set autoindent                          " automatically indent new lines
+set smartindent                         " do clever autoindenting
 
 " Set color of indent lines.
 let g:indentLine_color_term = 0
@@ -250,20 +155,11 @@ let g:indentLine_color_term = 0
 "  15 Folding
 " -----------------------------------------------------------------------------
 
-" Display all folds open.
-set nofoldenable
-
-" Close folds higher than 2.
-set foldlevel=2
-
-" Change what's printed on the folded line.
-set foldtext=NeatFoldText()
-
-" Fold by syntax.
-set foldmethod=syntax
-
-" Disable Ruby comment folds.
-let ruby_no_comment_fold=1
+set nofoldenable                        " display all folds as open
+set foldlevel=2                         " close folds higher than 2
+set foldtext=NeatFoldText()             " change what's printed on the folded line
+set foldmethod=syntax                   " fold by syntax
+let ruby_no_comment_fold=1              " disable folding ruby syntax
 
 " -----------------------------------------------------------------------------
 "  16 Diff mode
@@ -274,8 +170,7 @@ let ruby_no_comment_fold=1
 "  17 Mapping
 " -----------------------------------------------------------------------------
 
-" Allow timing out halfway into a mapping.
-set ttimeoutlen=50
+set ttimeoutlen=50                      " allow timing out halfway into mapping
 
 " -----------------------------------------------------------------------------
 "  18 Reading and writing files
@@ -286,25 +181,18 @@ set ttimeoutlen=50
 "  19 The swap file
 " -----------------------------------------------------------------------------
 
-" Don't use a swap file.
-set noswapfile
+set noswapfile                          " don't use swap file
 
 " -----------------------------------------------------------------------------
 "  20 Command line editing
 " -----------------------------------------------------------------------------
 
-" How does command line completion work?
-set wildmode=list:full
-
-" Ignore these file patterns.
-set wildignore+=*.exe,*.swp,.DS_Store
-
-" Turn on wild menu.
-set wildmenu
-
-" Enable persistent undo, and set location of undo files directory.
-set undofile
-set undodir=$HOME/.vimundo
+set wildcharm=<C-z>
+set wildmode=list:full                  " how does command line completion work?
+set wildignore+=*.exe,*.swp,.DS_Store   " ignored file patterns
+set wildmenu                            " turn on wild menu
+set undofile                            " enable persistent undo
+set undodir=$HOME/.vimundo              " set location of undo files
 
 " -----------------------------------------------------------------------------
 "  21 Executing external commands
@@ -330,15 +218,12 @@ set undodir=$HOME/.vimundo
 "  25 Various
 " -----------------------------------------------------------------------------
 
-" Alow virtual edit in visual block.
-set virtualedit=block
+set virtualedit=block                       " allow virtual edit in virtual block
 
-" Open investigate in Dash
-let g:investigate_use_dash=1
+let g:investigate_use_dash=1                " use dash for investigate
 
-
-let g:syntastic_ruby_checkers = ['rubocop']
-let g:syntastic_ruby_rubocop_args = '-R'
+let g:syntastic_ruby_checkers = ['rubocop'] " use rubycop for ruby syntax
+let g:syntastic_ruby_rubocop_args = '-R'    " use rails cops for ruby files
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_enable_signs = 1
 let g:syntastic_stl_format = 'SYNTAX(%E{err: %e}%B{ }%W{warn: %w})'
@@ -461,7 +346,6 @@ nnoremap <leader>K :call investigate#Investigate()<CR>
 
 " Display highlight group of word below cursor.
 nnoremap <F9> :echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')<CR>
-
 
 " -----------------------------------------------------------------------------
 "  27 Color highlighting
